@@ -5,7 +5,7 @@ namespace ProductManagement.Entity
     {
         public long OrderId { get; set; }
         public string Identifier { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public decimal TotalValue { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using static ProductManagement.Entity.Enum;
 
 namespace ProductManagement.Entity
@@ -7,6 +7,7 @@ namespace ProductManagement.Entity
     {
         public long ProductId { get; set; }
         public string ProductName { get; set; }
+        [Column(TypeName = "tinyint")]
         public TypeCategory Category { get; set; }
     }
 }

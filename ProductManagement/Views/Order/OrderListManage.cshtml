@@ -1,0 +1,56 @@
+﻿@using ProductManagement.Entity;
+
+@model List<Order>
+
+@{
+    ViewData["Title"] = "Pedidos";
+}
+
+<h1>Lista de Pedidos em Processo</h1>
+
+<a class="btn btn-dark" href="@Url.Action("Index", "Home")"> <i class='bx bx-arrow-back'></i> Voltar</a>
+
+<form asp-controller="Product" asp-action="FilterOrderByName" method="get">
+    <input type="text" name="input" placeholder="Pesquisar Pedido por identificador">
+</form>
+
+@if (TempData["Error"] != null)
+{
+    <div id="divErro" class="alert alert-danger">
+        @TempData["Error"]
+        <button onclick="closedButtonDivErro()">
+            <i class='bx bx-x'></i>
+        </button>
+    </div>
+}
+
+<div>
+    <table class="table table-dark border-primary" id="companyTable">
+        <thead>
+            <tr>
+                <th class="orderId"></th>
+                <th class="Identifier">Nome do Produto</th>
+                <th class="description">Categoria</th>
+                <th class="totalValue">Categoria</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="bodyCompanyTable">
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td class="orderId">@order.OrderId</td>
+                    <td class="identifier">@order.Identifier</td>
+                    <td class="description">@order.Description</td>
+                    <td class="totalValue">@order.TotalValue</td>
+                    <td class="Max-Width180">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a onclick="validateProduct()" class="btn btn-outline-primary" href="@Url.Action("UpdateProduct", "Order", new { orderId = order.OrderId})">Modificar Pedido</a>
+                            <a onclick="validateProduct()" class="btn btn-outline-primary" href="@Url.Action("RemoveProduct", "Order", new { orderId = order.OrderId})">Remover Pedido</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

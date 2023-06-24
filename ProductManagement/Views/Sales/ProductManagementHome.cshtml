@@ -1,0 +1,57 @@
+﻿@using ProductManagement.Entity;
+
+@model ViewModel
+
+@{
+    ViewData["Title"] = "ItensNoPedido";
+    string orderItemsJson = System.Text.Json.JsonSerializer.Serialize(Model.OrderItems);
+
+    var orderItemsList = Model.OrderItems;
+}
+
+<h1>Lista de Produtos disponíveis </h1>
+
+<a class="btn btn-dark" href="@Url.Action("Index", "Home", new { orderItems = orderItemsJson})"> <i class='bx bx-arrow-back'></i> Voltar</a>
+
+<form asp-controller="Product" asp-action="FilterProductByName" method="get">
+    <input type="text" name="input" placeholder="Pesquisar Produto por nome">
+</form>
+
+@if (TempData["Error"] != null)
+{
+    <div id="divErro" class="alert alert-danger">@TempData["Error"]
+        <button onclick="closedButtonDivErro()">
+            <i class='bx bx-x'></i>
+        </button>
+    </div>
+}
+
+<div>
+    <table class="table table-dark border-primary" id="companyTable">
+        <thead>
+            <tr>
+                <th class="productId"></th>
+                <th class="productName">Nome do Produto</th>
+                <th class="category">Categoria</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="bodyCompanyTable">
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td class="productId">@product.ProductId</td>
+                    <td class="productName">@product.ProductName</td>
+                    <td class="category">@product.Category</td>
+                    <td class="Max-Width180">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a onclick="validateProduct()" class="btn btn-outline-primary" href="@Url.Action("InsertNewProdutoToOrder", "Home", new { productId = product.ProductId, orderItems = orderItemsJson})">Adicionar a Pedido</a>
+                        </div>
+                    </td>
+                </tr>
+                <input id="inputProductId" type="hidden" name="productId" value="@product.ProductId" />
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-info" href="@Url.Action("NewOrderItemsToInsert", "Home", new { orderItems = orderItemsJson })">Lista de Produtos no pedido</a>
+</div>

@@ -16,3 +16,119 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.bodySettings {
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+    border: .2rem solid #1f242d;
+    margin: 2rem 1.5rem 0 0;
+    border-radius: 3%;
+}
+
+.bg-text-color {
+    text-decoration: blink;
+    color: white;
+    font-weight: 700;
+}
+
+label {
+    color: whitesmoke;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.bg-text-color {
+    text-decoration: blink;
+    color: white;
+    font-weight: 700;
+}
+
+.bg-backgroud {
+    background: linear-gradient(TO RIGHT, #040404, #000000, #656565);
+}
+
+.style-link {
+    padding-left: 40rem;
+}
+
+.social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: .2rem solid #1f242d;
+    border-radius: 50%;
+    font-size: 1rem;
+    margin: 0 1.5rem 0 0;
+    color: #0ef;
+    transition: .5s ease;
+}
+
+    .social-media a:hover {
+        text-decoration: none;
+        background: #0ef;
+        color: #323946;
+        box-shadow: 0 0 1rem #0ef;
+    }
+
+.padding10 {
+    padding-left: 10rem;
+}
+
+.home a {
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 2rem;
+    background: transparent;
+    border-radius: 50%;
+    font-size: 1rem;
+    color: #0ef;
+    transition: .5s ease;
+}
+
+    .home a:hover {
+        text-decoration: none;
+        background: #0ef;
+        color: #323946;
+        box-shadow: 0 0 1rem #0ef;
+    }
+
+.Max-Width180 {
+    max-width: 180px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+h1 {
+    color: whitesmoke;
+    text-align: center;
+}
+
+form {
+    padding: 1rem;
+}
+
+input {
+    font-size: .8rem;
+    width: 20rem;
+    background-color: transparent;
+    color: white;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    border: .1rem solid white;
+}
+
+.alert-view {
+    text-align: center;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}

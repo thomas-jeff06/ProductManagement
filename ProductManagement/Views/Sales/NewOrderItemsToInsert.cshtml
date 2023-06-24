@@ -1,0 +1,52 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "Lista De Itens No Pedido";
+    string orderItemsJson = System.Text.Json.JsonSerializer.Serialize(Model.OrderItems);
+}
+<h1>Lista de Produtos no Pedido </h1>
+
+@if (TempData["Error"] != null)
+{
+    <div id="divErro" class="alert alert-danger">
+        @TempData["Error"]
+        <button onclick="closedButtonDivErro()">
+            <i class='bx bx-x'></i>
+        </button>
+    </div>
+}
+
+<div>
+    <table class="table table-dark border-primary" id="companyTable">
+        <thead>
+            <tr>
+                <th class="productId">productId</th>
+                <th class="productName">Nome do Produto</th>
+                <th class="category">Categoria</th>
+                <th class="quantity">Quantidade</th>
+                <th class="value">Preço Por Unidade</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="bodyCompanyTable">
+            @foreach (var orderItem in Model.OrderItems)
+            {
+                <tr>
+                    <td class="productId">@orderItem.ProductId</td>
+                    <td class="productName">@Model.Products[Model.OrderItems.IndexOf(orderItem)].ProductName</td>
+                    <td class="category">@Model.Products[Model.OrderItems.IndexOf(orderItem)].Category</td>
+                    <td class="quantity">@orderItem.Quantity</td>
+                    <td class="value">@orderItem.Value</td>
+                    <td class="Max-Width180">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a class="btn btn-outline-primary" href="@Url.Action("RemoveProdutoToOrder", "Home")">Remover do Pedido</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a class="btn btn-info" href="@Url.Action("InsertNewOrderItems", "Home", new { orderItems = orderItemsJson} )">Fechar Pedido</a>
+    <a href="@Url.Action("ProductManagementHome", "Home", new { orderItems = orderItemsJson})" class="btn btn-info">Adicionar mais Produto</a>
+</div>

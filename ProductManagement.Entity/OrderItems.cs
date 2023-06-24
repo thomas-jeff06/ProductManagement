@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ProductManagement.Entity
 {
-    internal class OrderItems
+    [Serializable]
+    public class OrderItems : BaseEntity
     {
+        public long OrderItemsId { get; set; }
+        public long OrderId { get; set; }
+        public long ProductId { get; set; }
+        public int Quantity { get; set; }
+        public decimal Value { get; set; }
     }
 }

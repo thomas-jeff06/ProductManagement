@@ -10,6 +10,6 @@ namespace ProductManagement.Entity
     {
         public DateTime CreationDate { set; get; }
         public DateTime UpdateDate { set; get; }
-        public DateTime DeleteDate { set; get; }
+        public DateTime? DeletionDate { set; get; }
     }
 }
