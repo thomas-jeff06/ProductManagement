@@ -1,0 +1,37 @@
+﻿@using ProductManagement.Entity;
+
+@model ViewModel
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<h1>Lista de Produtos no Pedido</h1>
+
+<a class="btn btn-dark" href="@Url.Action("OrderListManage", "Order")"> <i class='bx bx-arrow-back'></i> Voltar</a>
+
+<div>
+    <table class="table table-dark border-primary" id="companyTable">
+        <thead>
+            <tr>
+                <th class="productId">productId</th>
+                <th class="productName">Nome do Produto</th>
+                <th class="category">Categoria</th>
+                <th class="quantity">Quantidade</th>
+                <th class="value">Preço Por Unidade</th>
+            </tr>
+        </thead>
+        <tbody id="bodyCompanyTable">
+            @foreach (var orderItem in Model.OrderItems)
+            {
+                <tr>
+                    <td class="productId">@orderItem.ProductId</td>
+                    <td class="productName">@Model.Products[Model.OrderItems.IndexOf(orderItem)].ProductName</td>
+                    <td class="category">@Model.Products[Model.OrderItems.IndexOf(orderItem)].Category</td>
+                    <td class="quantity">@orderItem.Quantity</td>
+                    <td class="value">@orderItem.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

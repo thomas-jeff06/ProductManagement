@@ -7,6 +7,7 @@ using ProductManagement.DAL.Util;
 using ProductManagement.Entity;
 using ProductManagement.Models;
 using System.Diagnostics;
+using System.Globalization;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ProductManagement.Controllers
@@ -63,7 +64,7 @@ namespace ProductManagement.Controllers
             return View("~/Views/Sales/InsertNewOrderItems.cshtml", viewModel);
         }
 
-        public IActionResult NewOrderItemsToInsert(int amountProduct, decimal valueProduct, string orderItems, long productId)
+        public IActionResult NewOrderItemsToInsert(int amountProduct, string valueProduct, string orderItems, long productId)
         {
             ProductRepository productRepository = new ProductRepository();
             OrderItems newOrderItems = new OrderItems();
@@ -75,11 +76,12 @@ namespace ProductManagement.Controllers
             viewModel.Products = products;
 
             viewModel.OrderItems = transactionTRA.ConvertJsonToOrderItems(orderItems);
+            string parseDecimal = valueProduct.Replace(".", ",");
 
             if (amountProduct > 0)
             {
                 newOrderItems.ProductId = productId;
-                newOrderItems.Value = valueProduct;
+                newOrderItems.Value = decimal.Parse(parseDecimal);
                 newOrderItems.Quantity = amountProduct;
 
                 viewModel.OrderItems.Add(newOrderItems);
@@ -94,9 +96,16 @@ namespace ProductManagement.Controllers
             return View("~/Views/Sales/NewOrderItemsToInsert.cshtml", viewModel);
         }
 
-        public IActionResult RemoveProdutoToOrder(long productId, List<OrderItems> orderItems)
+        public IActionResult RemoveProductToOrder(long productId, string orderItems)
         {
-            return View();
+            TransactionTRA transactionTRA = new TransactionTRA();
+            List<OrderItems> orderItemsAux = new List<OrderItems>();
+
+            orderItemsAux = transactionTRA.ConvertJsonToOrderItems(orderItems);
+
+            string newOrderItems = transactionTRA.RemoveProductToOrder(orderItemsAux, productId);
+
+            return RedirectToAction("NewOrderItemsToInsert", new { orderItems = newOrderItems });
         }
 
         public IActionResult InsertNewOrderItems(string orderItems)

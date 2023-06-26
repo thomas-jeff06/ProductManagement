@@ -1,0 +1,31 @@
+﻿@using ProductManagement.Entity;
+
+@model Order
+
+@{
+    ViewData["Title"] = "Alterar Pedido";
+}
+
+<div class="bg-body bodySettings">
+    <a class="btn btn-dark" href="@Url.Action("OrderListManage", "Order")"> <i class='bx bx-arrow-back'></i> Voltar</a>
+
+    <div class="d-grid gap-2 d-md-flex">
+        <h3 class="text-light">Alterar Pedido:</h3>
+    </div>
+
+    <form id="formInsertProduct" asp-controller="Order" asp-action="UpdateToOrder" method="post">
+        <div class="mb-3">
+            <label> Identificador do Pedido: </label>
+            <input class="col-form-label" type="text" name="identifier" value="@Model.Identifier" required>
+        </div>
+
+        <div class="mb-3">
+            <label> Descrição do Pedido: </label>
+            <input class="col-form-label" type="text" name="description" value="@Model.Description" required>
+        </div>
+
+        <input type="hidden" name="orderId" value="@Model.OrderId" />
+
+        <button class="btn btn-light" type="submit">Alterar Pedido</button>
+    </form>
+</div>

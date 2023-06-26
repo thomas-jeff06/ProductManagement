@@ -10,10 +10,6 @@
 
 <a class="btn btn-dark" href="@Url.Action("Index", "Home")"> <i class='bx bx-arrow-back'></i> Voltar</a>
 
-<form asp-controller="Product" asp-action="FilterProductByName" method="get">
-    <input type="text" name="input" placeholder="Pesquisar Produto por nome">
-</form>
-
 @if (TempData["Error"] != null)
 {
     <div id="divErro" class="alert alert-danger">

@@ -39,5 +39,37 @@ namespace ProductManagement.DAL.Repositories
                 return false;
             }     
         }
+
+        public List<OrderItems> GetOrderItemsByOrderId(long orderId)
+        {
+            using (var context = new DataContext())
+            {
+                var orderIdParameter = new SqlParameter("@ParameterOrderId", orderId);
+
+                return context.OrderItems
+                .FromSqlRaw("EXEC GetOrderItemsByOrderId @ParameterOrderId", orderIdParameter)
+                .ToList();
+            }
+        }
+
+        public bool DeleteOrderItems(long orderItemsId)
+        {
+            try
+            {
+                using (var context = new DataContext())
+                {
+                    var ParameterOrderItemsId = new SqlParameter("@ParameterOrderItemsId", orderItemsId);
+
+                    context.Database.ExecuteSqlRaw("EXEC DeleteOrderItems @ParameterOrderItemsId",
+                        ParameterOrderItemsId);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

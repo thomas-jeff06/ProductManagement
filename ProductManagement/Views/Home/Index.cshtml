@@ -9,7 +9,7 @@
         <h2 class="display-2">Bem vindo ao Sistema de Gerenciamento de Pedidos </h2>
         <p>Lista de Produtos para Pedido</p>
 
-        <a class="btn btn-success" href="@Url.Action("ProductManagementHome", "Home", new { orderItems = Model})">Novo Pedido</a>
+        <a class="btn btn-success" asp-controller="Home" asp-action="ProductManagementHome">Novo Pedido</a>
         <a class="btn btn-success" asp-controller="Order" asp-action="OrderListManage">Lista de Pedidos</a>
         <a class="btn btn-success" asp-controller="Product" asp-action="ProductListManage">Lista de Produtos</a>
     </div>

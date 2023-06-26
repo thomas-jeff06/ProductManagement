@@ -1,0 +1,49 @@
+﻿@using ProductManagement.Entity;
+@using static ProductManagement.Entity.Enum;
+
+@model Product
+
+@{
+    ViewData["Title"] = "Alterar Produto";
+}
+
+<div class="bg-body bodySettings">
+    <a class="btn btn-dark" href="@Url.Action("ProductListManage", "Product")"> <i class='bx bx-arrow-back'></i> Voltar</a>
+
+    <div class="d-grid gap-2 d-md-flex">
+        <h3 class="text-light">Alterar Produto:</h3>
+    </div>
+
+    <form id="formInsertOrders" asp-controller="Product" asp-action="ProductToUpdate" method="post">
+        <div class="mb-3">
+            <label> Nome do Produto: </label>
+            <input class="col-form-label" id="productNameUpdate" type="text" name="productName" value="@Model.ProductName" required>
+        </div>
+
+        @if (TempData["Condition"] == null)
+        {
+            <div class="mb-3">
+                <select class="form-select-lg col-form-label" aria-label="Default select example" name="category" required>
+                    <option value="@TypeCategory.Perecivel">Perecível</option>
+                    <option value="@TypeCategory.NoPerecivel">Não Perecível</option>
+                </select>
+            </div>
+        }
+        else
+        {
+            <div class="mb-3">
+                <label> @TempData["Condition"] </label>
+                <br/>
+
+                <select id="selectCategoryUpdate" class="form-select-lg col-form-label" aria-label="Default select example" name="category" required>
+                    <option value="@Model.Category.ToString()" selected disabled>@Model.Category</option>
+                    <input type="hidden" name="category" value="@Model.Category" />
+                </select>
+            </div>
+        }
+
+        <input type="hidden" name="productId" value="@Model.ProductId" />
+
+        <button onclick="validateDataUpdateProduct()" class="btn btn-light" type="submit">Alterar Produto</button>
+    </form>
+</div>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Novo Produto";
+}
+<div class="bg-body bodySettings">
+    <a class="btn btn-dark" href="@Url.Action("ProductListManage", "Product")"> <i class='bx bx-arrow-back'></i> Voltar</a>
+    
+    <div class="d-grid gap-2 d-md-flex">
+        <h3 class="text-light">Adicioanr Novo Produto:</h3>
+    </div>
+
+    <form id="formInsertProduct" asp-controller="Product" asp-action="InsertNewProduct" method="post">
+        <div class="mb-3">
+            <label> Nome do Produto: </label>
+            <input class="col-form-label" id="productName" type="text" name="productName" placeholder="Nome do Produto" required>
+        </div>
+
+        <div class="mb-3">
+            <select id="selectCategory" class="form-select-lg col-form-label" aria-label="Default select example" name="category" required>
+                <option selected disabled>Selecionar Categoria</option>
+
+                <option value="1">Perecível</option>
+                <option value="2">Não Perecível</option>
+            </select>
+        </div>
+
+        <button onclick="validateDataInsertProduct()" class="btn btn-light" type="submit">Adicionar Novo Produtos</button>
+    </form>
+</div>

@@ -39,7 +39,7 @@
                     <td class="value">@orderItem.Value</td>
                     <td class="Max-Width180">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a class="btn btn-outline-primary" href="@Url.Action("RemoveProdutoToOrder", "Home")">Remover do Pedido</a>
+                            <a class="btn btn-outline-primary" href="@Url.Action("RemoveProductToOrder", "Home", new { productId = orderItem.ProductId, orderItems = orderItemsJson})">Remover do Pedido</a>
                         </div>
                     </td>
                 </tr>

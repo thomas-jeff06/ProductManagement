@@ -11,11 +11,7 @@
 
 <h1>Lista de Produtos disponíveis </h1>
 
-<a class="btn btn-dark" href="@Url.Action("Index", "Home", new { orderItems = orderItemsJson})"> <i class='bx bx-arrow-back'></i> Voltar</a>
-
-<form asp-controller="Product" asp-action="FilterProductByName" method="get">
-    <input type="text" name="input" placeholder="Pesquisar Produto por nome">
-</form>
+<a class="btn btn-dark" href="@Url.Action("Index", "Home")"> <i class='bx bx-arrow-back'></i> Voltar</a>
 
 @if (TempData["Error"] != null)
 {

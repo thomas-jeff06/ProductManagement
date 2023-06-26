@@ -132,3 +132,12 @@ input {
     justify-content: center;
     align-items: center;
 }
+
+/*.table-container {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.table-container table {
+    width: 100%;
+}*/

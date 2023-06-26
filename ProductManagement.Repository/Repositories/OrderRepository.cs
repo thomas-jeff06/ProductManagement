@@ -58,6 +58,60 @@ namespace ProductManagement.DAL.Repositories
                 return 0;
             }
         }
+
+        public Order GetOrderByProductId(long productId)
+        {
+            using (var context = new DataContext())
+            {
+                return context.Order
+                .FromSqlRaw("EXEC GetOrderByProductId @ParameterProductId", new SqlParameter("@ParameterProductId", productId))
+                .ToList()
+                .FirstOrDefault();
+            }
+        }
+
+        public bool DeleteOrder(long orderId)
+        {
+            try
+            {
+                using (var context = new DataContext())
+                {
+                    var ParameterOrderId = new SqlParameter("@ParameterOrderId", orderId);
+
+                    context.Database.ExecuteSqlRaw("EXEC DeleteOrder @ParameterOrderId",
+                        ParameterOrderId);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateOrder(Order order)
+        {
+            try
+            {
+                using (var context = new DataContext())
+                {
+                    var ParameterOrderId = new SqlParameter("@ParameterOrderId", order.OrderId);
+                    var ParameterIdentifier = new SqlParameter("@ParameterIdentifier", order.Identifier);
+                    var ParameterDescription = new SqlParameter("@ParameterDescription", order.Description);
+                    var ParameterUpdateDate = new SqlParameter("@ParameterUpdateDate", order.UpdateDate);
+
+                    context.Database.ExecuteSqlRaw("EXEC UpdateOrder @ParameterOrderId, @ParameterIdentifier, @ParameterDescription, @ParameterUpdateDate",
+                        ParameterOrderId, ParameterIdentifier, ParameterDescription, ParameterUpdateDate);
+                }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
 
