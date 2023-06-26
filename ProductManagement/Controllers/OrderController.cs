@@ -3,7 +3,6 @@ using ProductManagement.DAL.Repositories;
 using ProductManagement.DAL.Util;
 using ProductManagement.Entity;
 using ProductManagement.Models;
-using System.Transactions;
 
 namespace ProductManagement.Controllers
 {

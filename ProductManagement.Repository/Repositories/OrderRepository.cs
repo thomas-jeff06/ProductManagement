@@ -1,11 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using Newtonsoft.Json.Linq;
 using ProductManagement.DAL.Context;
-using ProductManagement.DAL.Util;
 using ProductManagement.Entity;
-using System.Linq;
 
 namespace ProductManagement.DAL.Repositories
 {

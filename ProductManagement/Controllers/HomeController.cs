@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using ProductManagement.DAL.Context;
 using ProductManagement.DAL.Repositories;
 using ProductManagement.DAL.Util;
 using ProductManagement.Entity;
 using ProductManagement.Models;
 using System.Diagnostics;
-using System.Globalization;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ProductManagement.Controllers
 {

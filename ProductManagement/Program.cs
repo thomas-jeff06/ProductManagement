@@ -1,5 +1,3 @@
-using ProductManagement;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

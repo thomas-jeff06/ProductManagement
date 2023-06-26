@@ -2,8 +2,6 @@
 using ProductManagement.DAL.Repositories;
 using ProductManagement.DAL.Util;
 using ProductManagement.Entity;
-using ProductManagement.Models;
-using System.Transactions;
 using static ProductManagement.Entity.Enum;
 
 namespace ProductManagement.Controllers
